@@ -21,7 +21,7 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 app.conf.beat_schedule = {
     'check-url-status-code': {
-        'task': 'apps.check_url_app.tasks.get_url',
-        'schedule': 15.0,
+        'task': 'apps.check_url_app.tasks.check_urls',
+        'schedule': 10.0,
     },
 }
