@@ -1,6 +1,7 @@
 import os
 
 from celery import Celery
+
 from django.conf import settings
 
 
@@ -19,9 +20,10 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
+# Add schedule for task, time defined in settings.py -> CELERY_TIME_INTERVAL
 app.conf.beat_schedule = {
     'check-url-status-code': {
         'task': 'apps.check_url_app.tasks.check_urls',
-        'schedule': 10.0,
+        'schedule': settings.CELERY_TIME_INTERVAL,
     },
 }

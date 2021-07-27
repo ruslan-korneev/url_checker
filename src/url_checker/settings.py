@@ -4,7 +4,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-key-jfewipf2#ji0gw08*0hGJFvfijepwFJ)#(@U_ogNOEGngw'
+SECRET_KEY = 'django-insecure-key-jfewipf2#ji0gw08*0hGJFvfijepwFJ)'
 
 if os.environ.get('IS_PROD'):
     DEBUG = True
@@ -19,6 +19,7 @@ CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND = 'django-db'
+CELERY_TIME_INTERVAL = 15
 
 # Application definition
 
@@ -33,7 +34,6 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'django_celery_results',
 
-# My Applications
     'apps.check_url_app',
 ]
 
@@ -74,7 +74,7 @@ if os.environ.get('DB_TYPE', 'postgres') == 'sqlite':
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+        },
     }
 else:
     DATABASES = {
@@ -84,24 +84,24 @@ else:
             'USER': os.environ.get('POSTGRES_USER'),
             'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
             'HOST': 'db',
-            'PORT':5432,
-        }
+            'PORT': 5432,
+        },
     }
 
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # NOQA[E501]
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',            # NOQA[E501]
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',           # NOQA[E501]
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',          # NOQA[E501]
     },
 ]
 
