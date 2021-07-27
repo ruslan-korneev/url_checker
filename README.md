@@ -28,7 +28,7 @@ POSTGRES_USER=<username>
 POSTGRES_PASSWORD=<password>
 
 # Env for Celery
-CELERY_BROKER_URL='redis://redis:6379'
+CELERY_BROKER_URL=redis://redis:6379
 
 # Env for Redis
 REDIS_HOST=redis
@@ -39,4 +39,24 @@ env_sample file also can help you
 **bash**
 ```
 docker-compose up -d
+docker exec -it url_checker_web bash
+. venv/bin/activate
+python src/manage.py createsuperuser
 ```
+Write your username, e-mail(optional), password for admin panel
+
+## How to Use Admin Panel
+Now you can go to your [web-admin-page](http://localhost:8080/admin)
+<p>
+  LogIn<br>
+  <img src="screenshots/login.jpg"/><br>
+  Select Add ( ➕ Добавить) in "Urls" in CHECK_URL_APP<br>
+  <img src="screenshots/add_url.jpg"/><br>
+  Write your link and click "Save" (Сохранить)<br>
+  <img src="screenshots/write_link.jpg"/><br>
+  Now, you can see your web-site in list, wait for 15 seconds and update web-page<br>
+  <img src="screenshots/not_checked.jpg"/><br>
+  ✅ Done<br>
+  Your web-site status code 200 - is OK<br>
+  <img src="screenshots/checked.jpg"/><br>
+</p>

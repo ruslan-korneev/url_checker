@@ -7,7 +7,7 @@ POSTGRES_USER=<username>
 POSTGRES_PASSWORD=<password>
 
 # Env for Celery
-CELERY_BROKER_URL='redis://redis:6379'
+CELERY_BROKER_URL=redis://redis:6379
 
 # Env for Redis
 REDIS_HOST=redis
