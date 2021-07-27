@@ -25,9 +25,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8
+        python -m pip install docker docker-compose
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
         # exit-zero treats all errors as warnings. The GitHub editor is 120 chars wide
         flake8 src/. --extend-exclude=__pycache__,migrations,\
         manage.py,scripts,*.yml --max-line-length=120
+    - name: Test Django Application
+      run: |
+        cat env_sample > .env
+        docker-compose up -d
+        sleep 15
+        docker exec --tty url_checker_web bash -c '
+        ./venv/bin/python -m pip install -r requirements.txt &&
+        ./venv/bin/python src/manage.py test apps.check_url_app.tests && echo "pass"'
+        docker-compose down
+        rm .env

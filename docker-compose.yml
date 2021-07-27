@@ -2,7 +2,7 @@ version: '3'
 
 services:
     web:
-        tty: true
+        # tty: true
         image: python:3.9
         depends_on:
             - db
