@@ -1,3 +1,4 @@
+from ssl import SSLCertVerificationError
 from urllib.error import HTTPError, URLError
 from urllib.request import socket
 
@@ -12,6 +13,8 @@ from requests.exceptions import (
     ReadTimeout,
     SSLError,
 )
+
+from urllib3.exceptions import MaxRetryError
 
 from .models import Url
 
@@ -56,7 +59,7 @@ def check_urls():
             url.status_text = 'HTTP Error'
         except UnicodeError:
             url.status_text = 'Unicode Error'
-        except SSLError:
+        except (SSLError, SSLCertVerificationError, MaxRetryError):
             # If SSL cirtificate is invalid
             url.status_code = req.get(
                 url.url,
