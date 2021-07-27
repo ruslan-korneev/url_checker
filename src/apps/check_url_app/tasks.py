@@ -84,4 +84,4 @@ def check_urls():
         # Status code and Status Text
         #   - For clarification, the status of the code
         url.save(update_fields=['status_code', 'status_text'])
-    return urls
+    return
