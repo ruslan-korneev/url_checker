@@ -1,0 +1,14 @@
+# if is production, set TRUE, else FALSE
+IS_PROD=TRUE
+
+# Env for DataBase PostgreSQL
+POSTGRES_DB=<database_name>
+POSTGRES_USER=<username>
+POSTGRES_PASSWORD=<password>
+
+# Env for Celery
+CELERY_BROKER_URL='redis://redis:6379'
+
+# Env for Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
