@@ -31,3 +31,6 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 120 chars wide
         flake8 src/. --extend-exclude=__pycache__,migrations,\
         manage.py,scripts,*.yml --max-line-length=120
+    - name: Test Django Application
+      run: |
+        python src/manage.py test apps.check_url_app.tests
