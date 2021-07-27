@@ -37,6 +37,6 @@ jobs:
         cat env_sample > .env
         docker-compose up -d
         sleep 15
-        docker exec -T -it url_checker_web bash -c './venv/bin/python src/manage.py test apps.check_url_app.tests && echo "pass"'
+        docker exec --tty -it url_checker_web bash -c './venv/bin/python src/manage.py test apps.check_url_app.tests && echo "pass"'
         docker-compose down
         rm .env
